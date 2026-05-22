@@ -1,0 +1,43 @@
+---
+import Layout from './Layout.astro';
+import AffiliateDisclosure from '../components/AffiliateDisclosure.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  heroImage?: string;
+  tags?: string[];
+}
+const { title, description, pubDate, updatedDate, heroImage, tags = [] } = Astro.props;
+const formattedDate = pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+const formattedUpdated = updatedDate?.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+<Layout title={`${title} | ThinkFasterAI`} description={description} image={heroImage}>
+  <main class="container">
+    <article>
+      <header class="article-header">
+        {tags.length > 0 && (
+          <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:0.75rem;">
+            {tags.map(tag => <span class="article-tag">{tag}</span>)}
+          </div>
+        )}
+        <h1>{title}</h1>
+        <div class="article-meta">
+          <time datetime={pubDate.toISOString()}>{formattedDate}</time>
+          {updatedDate && <span>· Updated {formattedUpdated}</span>}
+        </div>
+      </header>
+
+      {heroImage && (
+        <img src={heroImage} alt={title} style="width:100%;border-radius:12px;margin-bottom:2rem;border:1px solid var(--border);" />
+      )}
+
+      <div class="prose">
+        <slot />
+        <AffiliateDisclosure />
+      </div>
+    </article>
+  </main>
+</Layout>

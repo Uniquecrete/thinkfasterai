@@ -1,0 +1,47 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 6);
+---
+<Layout title="ThinkFasterAI — AI Tools & Productivity">
+  <main>
+    <section class="hero">
+      <div class="container">
+        <div class="badge">AI Tools · Automation · Productivity</div>
+        <h1>Work smarter with<br /><em>AI that actually helps</em></h1>
+        <p>Honest breakdowns of AI tools, automation workflows, and productivity systems — so you can cut through the hype and find what works.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="wide">
+        <div class="section-title">Latest Articles</div>
+        <div class="section-sub">Deep dives into the AI tools and workflows worth your time.</div>
+        <div class="card-grid">
+          {posts.map(post => (
+            <div class="card">
+              <a href={`/blog/${post.slug}`}>
+                {post.data.tags.length > 0 && (
+                  <div class="card-tag">{post.data.tags[0]}</div>
+                )}
+                <h2>{post.data.title}</h2>
+                <p>{post.data.description}</p>
+                <div class="card-meta">
+                  {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </div>
+              </a>
+            </div>
+          ))}
+        </div>
+        {posts.length === 0 && (
+          <p style="color:var(--text-muted);text-align:center;padding:3rem 0;">
+            Articles coming soon. <a href="https://twitter.com/thinkfasterai">Follow on X</a> for updates.
+          </p>
+        )}
+      </div>
+    </section>
+  </main>
+</Layout>

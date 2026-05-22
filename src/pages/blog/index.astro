@@ -1,0 +1,32 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+<Layout title="Articles | ThinkFasterAI" description="AI tools, automation workflows, and productivity systems — honest breakdowns of what actually works.">
+  <main class="container">
+    <div style="padding: 3rem 0 1rem;">
+      <h1 style="font-size:2rem;font-weight:800;color:var(--text-heading);margin-bottom:0.5rem;">Articles</h1>
+      <p style="color:var(--text-muted);">AI tools, automation, and productivity — no fluff.</p>
+    </div>
+    <div class="card-grid">
+      {posts.map(post => (
+        <div class="card">
+          <a href={`/blog/${post.slug}`}>
+            {post.data.tags.length > 0 && <div class="card-tag">{post.data.tags[0]}</div>}
+            <h2>{post.data.title}</h2>
+            <p>{post.data.description}</p>
+            <div class="card-meta">
+              {post.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+            </div>
+          </a>
+        </div>
+      ))}
+    </div>
+    {posts.length === 0 && (
+      <p style="color:var(--text-muted);text-align:center;padding:4rem 0;">First articles dropping soon.</p>
+    )}
+  </main>
+</Layout>

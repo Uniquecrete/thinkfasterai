@@ -1,0 +1,68 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import affiliateData from '../../../public/affiliate-links.json';
+
+const tier1 = affiliateData.programs.filter(p =>
+  affiliateData.priorities.tier1.some(name => p.name.toLowerCase().includes(name.toLowerCase())) &&
+  p.status === 'Active'
+);
+const tier2 = affiliateData.programs.filter(p =>
+  affiliateData.priorities.tier2.some(name => p.name.toLowerCase().includes(name.toLowerCase())) &&
+  p.status === 'Active'
+);
+const allActive = affiliateData.programs.filter(p => p.status === 'Active');
+---
+<Layout
+  title="Best AI Tools | ThinkFasterAI"
+  description="Curated AI tools for automation, writing, video, and SEO — with honest commission disclosures."
+>
+  <main class="container">
+    <div style="padding: 3rem 0 1rem;">
+      <h1 style="font-size:2rem;font-weight:800;color:var(--text-heading);margin-bottom:0.5rem;">AI Tools Worth Using</h1>
+      <p style="color:var(--text-muted);margin-bottom:0.5rem;">
+        Curated picks across automation, writing, video, and SEO. Affiliate links marked with *.
+      </p>
+      <p style="font-size:0.8rem;color:var(--text-muted);">{affiliateData.ftcDisclosure}</p>
+    </div>
+
+    {tier1.length > 0 && (
+      <section class="section" style="padding-top:1rem;">
+        <div class="section-title">Top Picks</div>
+        <div class="section-sub">Highest-value programs — recurring commissions, long cookie windows.</div>
+        <div class="card-grid">
+          {tier1.map(tool => (
+            <div class="card">
+              <div class="card-tag">{tool.category}</div>
+              <h2>{tool.name} *</h2>
+              <p style="font-size:0.85rem;color:var(--text-muted);">{tool.commissionRate}</p>
+              <a href={tool.url} target="_blank" rel="noopener sponsored"
+                style="display:inline-block;margin-top:1rem;background:var(--accent);color:white;padding:0.4rem 1rem;border-radius:6px;font-size:0.85rem;font-weight:600;">
+                Learn More →
+              </a>
+            </div>
+          ))}
+        </div>
+      </section>
+    )}
+
+    <section class="section" style="padding-top:1rem;">
+      <div class="section-title">All Active Tools</div>
+      <div class="card-grid">
+        {allActive.map(tool => (
+          <div class="card">
+            <div class="card-tag">{tool.category}</div>
+            <h2>{tool.name}</h2>
+            <p style="font-size:0.8rem;color:var(--text-muted);margin-bottom:0.5rem;">{tool.commissionRate}</p>
+            {tool.cookieDuration !== 'N/A' && (
+              <p style="font-size:0.75rem;color:var(--text-muted);">Cookie: {tool.cookieDuration}</p>
+            )}
+            <a href={tool.url} target="_blank" rel="noopener sponsored"
+              style="display:inline-block;margin-top:1rem;color:var(--accent-light);font-size:0.85rem;">
+              View program →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+  </main>
+</Layout>

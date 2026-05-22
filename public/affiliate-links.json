@@ -1,0 +1,20 @@
+{
+  "lastUpdated": "2026-05-04",
+  "programs": [
+    { "name": "Pictory", "category": "AI Video", "url": "https://pictory.ai/affiliates", "commissionRate": "Up to 50% recurring lifetime", "cookieDuration": "9,999 days", "status": "Active" },
+    { "name": "n8n", "category": "Automation", "url": "https://n8n.io/partners", "commissionRate": "30% recurring for 12 months", "cookieDuration": "90 days", "status": "Active" },
+    { "name": "Copy.ai", "category": "AI Writing", "url": "https://www.copy.ai/affiliates", "commissionRate": "30% recurring lifetime", "cookieDuration": "90 days", "status": "Active" },
+    { "name": "Jasper AI", "category": "AI Writing", "url": "https://www.jasper.ai/affiliates", "commissionRate": "30% recurring", "cookieDuration": "30 days", "status": "Active" },
+    { "name": "Surfer SEO", "category": "SEO", "url": "https://surferseo.com/affiliates", "commissionRate": "75-125% of first monthly payment", "cookieDuration": "90 days", "status": "Active" },
+    { "name": "Zapier", "category": "Automation", "url": "https://zapier.com/affiliates", "commissionRate": "20% recurring for 12 months", "cookieDuration": "30 days", "status": "Active" },
+    { "name": "Murf AI", "category": "AI Voiceover", "url": "https://murf.ai/affiliate", "commissionRate": "20% recurring for 24 months", "cookieDuration": "90 days", "status": "Active" },
+    { "name": "Monday.com", "category": "Project Management", "url": "https://partners.monday.com", "commissionRate": "20% recurring", "cookieDuration": "90 days", "status": "Active" },
+    { "name": "CustomGPT.ai", "category": "AI Research", "url": "https://customgpt.ai/partner-affiliate-program/", "commissionRate": "Up to 20% recurring for 2 years", "cookieDuration": "30 days", "status": "Active" },
+    { "name": "Make.com", "category": "Automation", "url": "https://make.com/en/affiliate", "commissionRate": "Avg $20-50 per conversion", "cookieDuration": "30 days", "status": "Active" }
+  ],
+  "ftcDisclosure": "As an affiliate, I may earn a commission from qualifying purchases made through links in this content, at no additional cost to you.",
+  "priorities": {
+    "tier1": ["n8n", "Surfer SEO", "Pictory", "Zapier"],
+    "tier2": ["Copy.ai", "Jasper AI", "CustomGPT.ai", "Monday.com"]
+  }
+}

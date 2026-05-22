@@ -1,0 +1,18 @@
+---
+interface Props {
+  name: string;
+  description: string;
+  url: string;
+  commission?: string;
+}
+const { name, description, url, commission } = Astro.props;
+---
+<div class="affiliate-box">
+  <div class="affiliate-box-content">
+    <div class="affiliate-box-label">Recommended Tool</div>
+    <h4>{name}</h4>
+    <p>{description}</p>
+    {commission && <p style="font-size:0.75rem;color:var(--accent-light);margin-top:0.25rem;">{commission}</p>}
+    <a href={url} class="btn" target="_blank" rel="noopener noreferrer sponsored">Try {name} →</a>
+  </div>
+</div>
